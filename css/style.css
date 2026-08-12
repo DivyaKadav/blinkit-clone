@@ -11,23 +11,26 @@ body {
     color: #111;
 }
 
-/* =========================
+/* =======================================
    HEADER
-========================= */
+======================================= */
 
 header {
+    width: 100%;
+    min-height: 86px;
     display: flex;
     align-items: center;
-    gap: 40px;
+    flex-wrap: nowrap;
+    gap: 20px;
+    background-color: #fff;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    width: 100%;
-    background-color: #fff;
 }
 
 .headerLeft {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .logo {
@@ -35,8 +38,14 @@ header {
     border-right: 1px solid #ccc;
 }
 
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
 .headerAddress {
-    padding: 20px 30px;
+    padding: 20px 25px;
+    white-space: nowrap;
 }
 
 .headerAddress h3 {
@@ -49,11 +58,13 @@ header {
 }
 
 .searchBox {
-    flex-grow: 1;
-    background-color: #f8f8f8;
-    border-radius: 15px;
+    flex: 1 1 auto;
+    min-width: 180px;
     display: flex;
+    align-items: center;
+    background-color: #f8f8f8;
     border: 1px solid #f4f4f4;
+    border-radius: 15px;
     overflow: hidden;
 }
 
@@ -62,13 +73,16 @@ header {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    font-size: 18px;
 }
 
 .searchBox input {
-    flex-grow: 1;
+    width: 100%;
+    min-width: 0;
+    padding: 15px 12px 15px 0;
     border: none;
+    outline: none;
     background-color: transparent;
-    padding-right: 15px;
 }
 
 .searchBox input:focus {
@@ -78,38 +92,48 @@ header {
 .headerBtn {
     display: flex;
     align-items: center;
-    gap: 20px;
-    margin-right: 40px;
+    flex-shrink: 0;
+    gap: 12px;
+    margin-right: 30px;
 }
 
 .headerBtn button {
     font-size: 16px;
-    padding: 15px;
-    background-color: transparent;
+    padding: 15px 18px;
     border: none;
+    background-color: transparent;
     cursor: pointer;
+    white-space: nowrap;
+}
+
+.headerBtn button:first-child {
+    color: #111;
 }
 
 .headerBtn button:last-child {
     color: white;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: bold;
     background-color: #54b226;
 }
 
-/* =========================
-   BANNERS
-========================= */
+/* =======================================
+   MAIN BANNER
+======================================= */
 
 .bannerSection {
-    margin: 0 auto;
     max-width: 1280px;
+    margin: 0 auto;
 }
 
 .bannerSection img {
     width: 100%;
     display: block;
 }
+
+/* =======================================
+   ORDER BANNERS
+======================================= */
 
 .orderBanner {
     display: flex;
@@ -127,14 +151,14 @@ header {
     display: block;
 }
 
-/* =========================
-   CATEGORIES
-========================= */
+/* =======================================
+   CATEGORY SECTION
+======================================= */
 
 .categorySection {
     max-width: 1280px;
-    flex-wrap: wrap;
     display: flex;
+    flex-wrap: wrap;
     margin: auto;
 }
 
@@ -147,9 +171,9 @@ header {
     display: block;
 }
 
-/* =========================
+/* =======================================
    PRODUCT SECTIONS
-========================= */
+======================================= */
 
 .productSection {
     max-width: 1280px;
@@ -178,7 +202,6 @@ header {
     width: 100%;
     margin: 30px 0;
     display: flex;
-    gap: 0;
     overflow-x: auto;
 }
 
@@ -266,9 +289,9 @@ header {
     cursor: pointer;
 }
 
-/* =========================
+/* =======================================
    FOOTER
-========================= */
+======================================= */
 
 footer {
     width: 100%;
@@ -284,10 +307,10 @@ footer {
 }
 
 .footer-mid-row1 {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 60px;
-    width: 100%;
 }
 
 .footer-mid-row1-left {
@@ -305,7 +328,7 @@ footer {
     margin-bottom: 25px;
 }
 
-/* Useful links */
+/* Useful Links */
 
 .usefullinks {
     display: flex;
@@ -378,7 +401,7 @@ footer {
     color: #111;
 }
 
-/* Footer bottom */
+/* Footer Bottom */
 
 .footer-bottom {
     margin-top: 60px;
@@ -469,13 +492,17 @@ footer {
     line-height: 1.5;
 }
 
-/* =========================
+/* =======================================
    RESPONSIVE
-========================= */
+======================================= */
 
 @media screen and (max-width: 1100px) {
     header {
-        gap: 15px;
+        gap: 10px;
+    }
+
+    .logo {
+        padding: 20px 18px;
     }
 
     .headerAddress {
@@ -484,7 +511,11 @@ footer {
 
     .headerBtn {
         margin-right: 15px;
-        gap: 10px;
+        gap: 6px;
+    }
+
+    .headerBtn button {
+        padding: 12px;
     }
 
     .footer-mid-row1 {
@@ -504,8 +535,13 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+    /*
+       On mobile the header is allowed to use multiple rows,
+       but Login/My Cart remain inside the header element.
+    */
     header {
         flex-wrap: wrap;
+        gap: 10px;
         padding-bottom: 12px;
     }
 
@@ -514,6 +550,7 @@ footer {
     }
 
     .searchBox {
+        flex: 1;
         margin-left: 15px;
     }
 
@@ -561,10 +598,18 @@ footer {
         padding: 10px;
     }
 
+    .headerAddress h3 {
+        font-size: 15px;
+    }
+
+    .headerAddress p {
+        font-size: 12px;
+    }
+
     .searchBox {
         width: calc(100% - 30px);
-        margin: 0 15px;
         flex-basis: 100%;
+        margin: 0 15px;
     }
 
     .headerBtn {
